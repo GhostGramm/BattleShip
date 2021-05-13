@@ -1,0 +1,275 @@
+body{
+    background-color: rgb(11,16,40);
+}
+
+.grid-computer > .taken{
+    /* background-color: hsl(200, 100%, 50%) !important; */
+    background: transparent;
+    border-radius: 0 !important;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.battleship-grid{
+    background-image: url("images/in game grid.png");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    display: grid;
+    margin: 2vmin;
+    grid-template-rows: repeat(10,40px);
+    grid-template-columns: repeat(10,40px);
+    position: relative;
+}
+
+.taken,.ship{
+    position: relative;
+}
+
+.taken.start.vertical,
+.taken.start.vertical::before{
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+.taken.end.vertical,
+.taken.end.vertical::before{
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.taken.start.horizontal,
+.taken.start.horizontal::before{
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+.taken.end.horizontal,
+.taken.end.horizontal::before{
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.taken.vertical::before,
+.taken.horizontal::before{
+    content: '';
+    border: .3vmin solid white;
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    right:  -1px;
+    left: -1px;
+}
+.taken.horizontal::before{
+    animation: ripplesY 3s linear infinite;
+    border-left: none;
+    border-right: none;
+}  
+.taken.vertical::before{
+    animation: ripplesX 3s linear infinite;
+    border-top: none;
+    border-bottom: none;
+}
+
+@keyframes ripplesX{
+    0%{
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    100%{
+        opacity: 0;
+        transform: scaleX(1.5);
+    }
+}
+@keyframes ripplesY{
+    0%{
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    100%{
+        opacity: 0;
+        transform: scaleY(1.5);
+    }
+}
+
+.grid-display{
+    display: flex;
+}
+
+
+.boom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.miss{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.boom::after{
+    background-color: red;
+    z-index: 1;
+}
+.miss::after{
+    background-color:white;
+}
+
+.boom::before{
+    border-color: red;
+}
+.miss::before{
+    border-color: white;
+}
+.boom::after,
+.miss::after{
+    content:'';
+    position:absolute;
+    border-radius: 100%;
+    width: 2vmin;
+    height: 2vmin;
+}
+
+@keyframes hit{
+    0%{
+        opacity: 1;
+        transform: scale(0);
+    }
+    100%{
+        opacity: 0;
+        transform: scale(4);
+    }
+}
+
+.hidden-info{
+    font-size: 1.5em;
+    align-items: center;
+    flex-direction: column;
+}
+.info-text{
+    margin: 1em;
+    color: tomato;
+    text-align: center;
+}
+.btn{
+    font-size: inherit;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-position: center;
+    background: transparent;
+    padding: .6rem 1rem;
+}
+
+.logo{
+    width: 200px;
+    height: 30px;
+}
+.game-logo{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: -15px;
+}
+.board-title{
+    color: tomato;
+    text-align: center;
+    font-size: inherit;
+}
+.info-container{
+    display: none;
+}
+.b-ship
+{
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    height: 40px;
+}
+
+.b-ship > div
+{
+    width: 40px;
+    height: 40px;
+    cursor: move;
+}
+
+.b-ship-cruiser
+{
+    background-image: url('images/cruiser.png');
+    opacity: 0.5;
+    width: 120px;
+    height: 40px;
+}
+.b-ship-cruiser-vertical
+{
+    background-image: url('images/cruiser-vertical.png');
+    opacity: 0.5;
+    width:40px;
+    height: 120px;
+}
+
+
+.b-ship-destroyer{
+    background-image: url('images/destroyer.png');
+    opacity: 0.5;
+    width: 80px;
+    height: 40px;
+}
+.b-ship-destroyer-vertical{
+    background-image: url('images/destroyer-vertical.png');
+    opacity: 0.5;
+    height: 80px;
+    width: 40px;
+}
+
+.b-ship-submarine{
+    background-image: url('images/submarine.png');
+    opacity: 0.5;
+    width: 120px;
+    height: 40px;
+}
+
+.b-ship-submarine-vertical{
+    background-image: url('images/submarine-vertical.png');
+    opacity: 0.5;
+    height:  120px;
+    width: 40px;
+}
+
+.b-ship-battleship{
+    background-image: url('images/battleship.png');
+    opacity: 0.5;
+    width: 160px;
+    height: 40px;
+}
+.b-ship-battleship-vertical{
+    background-image: url('images/battleship-vertical.png');
+    opacity: 0.5;
+    height: 160px;
+    width: 40px;
+}
+.b-ship-carrier{
+    background-image: url('images/carrier.png');
+    opacity: 0.5;
+    width: 200px;
+    height: 40px;
+}
+.b-ship-carrier-vertical{
+    background-image: url('images/carrier-vertical.png');
+    opacity: 0.5;
+    height: 200px;
+    width: 40px;
+}
+
+.b-ship-90
+{
+    transform: rotate(90deg);
+}
+
+.hide{
+    display: none;
+}
